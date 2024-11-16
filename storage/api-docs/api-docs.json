@@ -1,0 +1,311 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Monolotic API Rest Full",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:80"
+        }
+    ],
+    "paths": {
+        "/api/products": {
+            "post": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Create a new product",
+                "operationId": "2cc57a3afadd3cab966edb8491d19efb",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "price",
+                                    "quantity",
+                                    "sku",
+                                    "description"
+                                ],
+                                "properties": {
+                                    "price": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 199.99
+                                    },
+                                    "quantity": {
+                                        "type": "integer",
+                                        "example": 100
+                                    },
+                                    "sku": {
+                                        "type": "string",
+                                        "example": "PROD001"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "A high-quality product"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Product created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Product created successfully"
+                                        },
+                                        "product": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "price": {
+                                                    "type": "number",
+                                                    "format": "float",
+                                                    "example": 199.99
+                                                },
+                                                "quantity": {
+                                                    "type": "integer",
+                                                    "example": 100
+                                                },
+                                                "sku": {
+                                                    "type": "string",
+                                                    "example": "PROD001"
+                                                },
+                                                "description": {
+                                                    "type": "string",
+                                                    "example": "A high-quality product"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2024-11-15T10:00:00"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2024-11-15T10:00:00"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/auth/register": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Register a new user",
+                "operationId": "b232029cb9cf8f06f77800d9596d5bfc",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "john@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password123"
+                                    },
+                                    "password_confirmation": {
+                                        "type": "string",
+                                        "example": "password123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User successfully registered",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "user": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "John Doe"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "john@example.com"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2024-11-15T10:00:00"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2024-11-15T10:00:00"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request, invalid input"
+                    }
+                }
+            }
+        },
+        "/api/auth/login": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "User login",
+                "operationId": "aca190fda31337cd4afc56dada54fbcf",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "john@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password123"
+                                    },
+                                    "remember": {
+                                        "type": "boolean",
+                                        "example": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Login successful"
+                                        },
+                                        "token": {
+                                            "type": "string",
+                                            "example": "your_generated_token_here"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid credentials"
+                    }
+                }
+            }
+        },
+        "/api/auth/logout": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "User logout",
+                "operationId": "0bceb08b5ae16c7c1ef7bf9441528893",
+                "responses": {
+                    "200": {
+                        "description": "Logout successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Logout successful"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "apiKey",
+                "description": "Use Bearer token for authentication (e.g., Bearer YOUR_TOKEN)",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Product",
+            "description": "Operations related to product magnament"
+        },
+        {
+            "name": "User",
+            "description": "Operations related to user authentication and registration"
+        }
+    ]
+}
